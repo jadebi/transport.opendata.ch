@@ -7,17 +7,15 @@ export function useQueryLocations(query: string) {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (!query) {
-      setLocs([]);
-      return;
-    }
-
     setLoading(true);
     async function load() {
       try {
         const result = await fetch(apiUrl + "?query=" + query);
+
+        if (!result.ok) throw new Error("Request failed!");
         const data = await result.json();
-        setLocs(data);
+
+        setLocs(data?.stations?.filter((item: any) => item.id !== null));
       } catch (e) {
         setLocs([`${e}`]);
       } finally {

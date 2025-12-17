@@ -1,35 +1,34 @@
-import { Card, Input } from "@heroui/react";
-import { useState } from "react";
-import LocCards from "../components/render/LocCards";
+import { useNavigate, useParams } from "react-router-dom";
+import { useQueryStationboard } from "../api/queryStationboard";
+import { Button, Divider } from "@heroui/react";
+import { StationboardRows } from "../components/render/StationboardRows";
 
 export default function Stationboard() {
-  const [query, setQuery] = useState<string>("")
+  const navigate = useNavigate();
+  const { stationId } = useParams<{ stationId: string }>();
+  const { items: data, loading, error, refresh } = useQueryStationboard(Number(stationId))
+
 
   return (
     <>
-      <div className='w-full flex flex-col items-center'>
-        <span className='text-5xl mt-2 mx-2 mb-3'>
-          <b>Stationboard</b>
-        </span>
-        <span className="text-sm dark:text-white/70 text-black/70 mb-3 text-center">
-          <p>Enter a Station name and see the Ariving and Departing Trains.</p>
-        </span>
-        {/* <Divider className='my-1' />
-          <span className='text-black/50 dark:text-white/50'> test </span> */}
-      </div>
-      <div className="w-full flex flex-col items-center">
-        <div className="w-[80%] sm:w-[40%] flex flex-col items-center content-center justify-center">
-          <div className="w-full">
-            <Card>
-              <Input label="Search Station" type="text" value={query} onValueChange={setQuery} />
-            </Card>
-          </div>
-          <div>
-            <LocCards query={query}/>
-          </div>
-        </div>
+      <div className="my-3 px-3 flex flex-row gap-3 items-center">
+        <Button onPress={() => navigate(-1)}>Go back</Button>
+        <Button onPress={refresh}>Refresh</Button>
+        <span className="text-center">{loading ? ("Refreshing...") : ("")}</span>
       </div>
 
+      <Divider className="my-3" />
+
+      <div className="w-full flex flex-col items-center">
+
+        <div className="w-full px-4 grid grid-cols-1">
+          {!error && data?.stationboard?.map((item: any) => (
+            <StationboardRows key={item.id} item={item} />
+          ))}
+          {error && <p>ERROR: {error}</p>}
+
+        </div>
+      </div>
     </>
   )
 }
