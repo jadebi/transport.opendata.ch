@@ -14,7 +14,7 @@ export default function Stationboard() {
       <div className="my-3 px-3 flex flex-row gap-3 items-center">
         <Button onPress={() => navigate(-1)}>Go back</Button>
         <Button onPress={refresh}>Refresh</Button>
-        <span className="text-center">{loading ? ("Refreshing...") : ("")}</span>
+        <span className="text-center">{loading ?? ("Refreshing...")}</span>
       </div>
 
       <Divider className="my-3" />
@@ -22,7 +22,7 @@ export default function Stationboard() {
       <div className="w-full flex flex-col items-center">
 
         <div className="w-full px-4 grid grid-cols-1">
-          {!error && data?.stationboard?.map((item: any) => (
+          {!error && (data as any).stationboard?.map((item: any) => (
             <StationboardRows key={item.id} item={item} />
           ))}
           {error && <p>ERROR: {error}</p>}

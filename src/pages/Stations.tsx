@@ -7,14 +7,11 @@ export default function Stations() {
 
   return (
     <>
-      <div className='w-full flex flex-col items-center'>
-        <span className='text-5xl mt-2 mx-2 mb-3'>
-          <b>Stationboard</b>
-        </span>
-
-        <span className="text-sm dark:text-white/70 text-black/70 mb-3 text-center">
-          <p>Enter a Station name and see the Ariving and Departing Trains.</p>
-        </span>
+      <div className='w-full flex flex-col items-center mb-2'>
+        <span className='text-5xl mx-2 mb-2'><b>Stationboard</b></span>
+        <p className="text-sm dark:text-white/70 text-black/70 text-center">
+          Enter a Station name and see the Ariving and Departing Trains.
+        </p>
       </div>
 
       <div className="w-full flex flex-col items-center">

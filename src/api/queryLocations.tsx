@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const apiUrl = "http://transport.opendata.ch/v1/locations";
+const apiUrl = "https://transport.opendata.ch/v1/locations";
 
 export function useQueryLocations(query: string) {
   const [locs, setLocs] = useState<any[]>([]);

@@ -5,11 +5,10 @@ export default function Landing() {
   return (
     <>
       <div className="w-full flex flex-col items-center px-4">
-
-        <div className="w-full flex flex-col items-center text-center">
-          <span className="text-5xl font-bold mb-2">Welcome</span>
+        <div className="w-full flex flex-col items-center text-center mb-2">
+          <span className="text-5xl mb-2"><b>Welcome</b></span>
           <p className="text-sm">
-            This is a demo page for the <b>transport.opendata.ch</b> API.
+            This is a demo page for the transport.opendata.ch API.
           </p>
           <p className="text-sm text-foreground/60">
             All data is publicly available and this website shows how to fetch and display it dynamically.
@@ -62,7 +61,6 @@ export default function Landing() {
               <p>This feature is not certain yet and only a idea!</p>
             </CardBody>
           </Card>
-
         </div>
       </div>
     </>

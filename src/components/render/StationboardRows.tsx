@@ -21,8 +21,8 @@ export function StationboardRows({ item }: { item: any }) {
                 ? /^[0-9/]+$/.test(item.stop.platform)
                   ? "Gleis "
                   : "Kante "
-                : "Gleis "}
-              {item.stop.platform ?? "?"}
+                : ""}
+              {item.stop.platform ?? ""}
             </span>
           </div>
 
