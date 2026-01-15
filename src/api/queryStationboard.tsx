@@ -27,7 +27,7 @@ export function useQueryStationboard(stationId: number, limit: number = 12) {
 
   useEffect(() => {
     load();
-    const id = window.setInterval(load, 1000); // 1000 is the automatic refresh delay in ms
+    const id = window.setInterval(load, 2000); // 2000 is the automatic refresh delay in ms
     return () => clearInterval(id);
   }, [load]);
 
