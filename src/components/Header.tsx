@@ -16,10 +16,8 @@ export default function Header() {
   useEffect(() => {
     if (darkMode) {
       document.documentElement.classList.add("dark");
-      document.documentElement.classList.remove("light");
       localStorage.setItem("theme", "dark");
     } else {
-      document.documentElement.classList.add("light");
       document.documentElement.classList.remove("dark");
       localStorage.setItem("theme", "light");
     }
@@ -55,10 +53,10 @@ export default function Header() {
 
       <NavbarContent justify="end">
         <NavbarItem>
-          <Switch checked={darkMode} onChange={() => setDarkMode(!darkMode)} isSelected={darkMode} startContent={<Moon />} endContent={<Sun />} />
+          <Switch isSelected={darkMode} onValueChange={setDarkMode} startContent={<Moon />} endContent={<Sun />} />
         </NavbarItem>
         <NavbarItem>
-          <Button as={NavLink} color="primary" to="https://github.com/CuddlyCornet645/transport.opendata.ch" variant="flat">
+          <Button as={NavLink} color="primary" to="https://github.com/jadebi/transport.opendata.ch" variant="flat">
             <Github /> View Code
           </Button>
         </NavbarItem>

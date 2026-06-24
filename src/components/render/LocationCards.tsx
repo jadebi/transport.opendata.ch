@@ -1,23 +1,14 @@
-import { useEffect } from "react";
 import { useQueryLocations } from "../../api/queryLocations";
 import { Card, CardBody, Tooltip } from "@heroui/react";
-import { Bus, Heart, TrainFront } from "lucide-react";
+import { Bus, TrainFront } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 export default function RenderLocCards({ query }: { query: string }) {
-  const [locs, loading] = useQueryLocations(query)
+  const { items: locs, loading, error } = useQueryLocations(query)
   const navigate = useNavigate();
 
-  if (!Array.isArray(locs)) return (<p>Error: {locs}</p>)
+  if (error) return (<p>Error: {error}</p>)
   if (query) localStorage.setItem('query', query);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      console.log(locs)
-      console.log(loading)
-    }, 300);
-    return () => clearTimeout(timeout);
-  }, [query]);
 
   if ((query) && (!loading) && (locs.length === 0)) {
     return <p>No Results</p>
@@ -30,7 +21,7 @@ export default function RenderLocCards({ query }: { query: string }) {
   return (
     <>
       {locs.map((loc) => (
-        <Card key={loc.id} className="w-full max-w-md justify-self-center hover:bg-default-100" isPressable onPress={() => navigate(`/station/${loc?.id}`)}>
+        <Card key={loc.id} className="w-full max-w-md justify-self-center hover:bg-default-100" isPressable onPress={() => navigate(`/station/${loc.id}`)}>
           <CardBody>
             <div className="w-full flex flex-row justify-between items-center">
               <div className="min-w-0 flex-1 pr-1">
@@ -48,7 +39,7 @@ export default function RenderLocCards({ query }: { query: string }) {
               <div className="flex flex-col">
                 <p className="">{
                   (loc.icon)
-                    ? (loc.icon == "bus"
+                    ? (loc.icon === "bus"
                       ? <Bus size={40} />
                       : <TrainFront size={40} />)
                     : <div className="flex flex-row"><TrainFront size={40} /><Bus size={40} /></div>

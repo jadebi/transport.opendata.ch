@@ -1,7 +1,8 @@
 import { useState, useEffect, useCallback } from "react";
+import type { StationboardResponse, StationboardEntry } from "../types";
 
 export function useQueryStationboard(stationId: number, limit: number = 12) {
-  const [data, setData] = useState<any[]>([]);
+  const [items, setItems] = useState<StationboardEntry[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -12,14 +13,14 @@ export function useQueryStationboard(stationId: number, limit: number = 12) {
 
     try {
       const apiUrl = "https://transport.opendata.ch/v1/stationboard";
-      const Result = await fetch(apiUrl + "?id=" + stationId + "&type=departure" + "&limit=" + limit);
-      if (!Result.ok) throw new Error(`HTTP ${Result.status}`);
-      const data = await Result.json();
+      const result = await fetch(apiUrl + "?id=" + stationId + "&type=departure" + "&limit=" + limit);
+      if (!result.ok) throw new Error(`HTTP ${result.status}`);
+      const { stationboard } = await result.json() as StationboardResponse;
 
-      setData(Array.isArray(data?.stationboard) ? data : []);
-    } catch (Err: any) {
-      setError(Err?.message);
-      setData([]);
+      setItems(Array.isArray(stationboard) ? stationboard : []);
+    } catch (Err) {
+      setError(Err instanceof Error ? Err.message : `${Err}`);
+      setItems([]);
     } finally {
       setLoading(false);
     }
@@ -27,9 +28,9 @@ export function useQueryStationboard(stationId: number, limit: number = 12) {
 
   useEffect(() => {
     load();
-    const id = window.setInterval(load, 2000); // 2000 is the automatic refresh delay in ms
+    const id = window.setInterval(load, 2000);
     return () => clearInterval(id);
   }, [load]);
 
-  return { items: data, loading, error, refresh: load };
+  return { items, loading, error, refresh: load };
 }

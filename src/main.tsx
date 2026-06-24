@@ -8,23 +8,26 @@ import Header from './components/Header';
 import Stations from './pages/Stations';
 import Stationboard from './pages/Stationboard';
 import Footer from './components/Footer';
+import ErrorBoundary from './components/ErrorBoundary';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <HeroUIProvider>
-      <HashRouter>
-        <div className="flex flex-col min-h-screen">
-          <Header />
-          <div className="grow">
-            <Routes>
-              <Route index path="/" element={<Landing />} />
-              <Route path="stations" element={<Stations />} />
-              <Route path="station/:stationId" element={<Stationboard />} />
-            </Routes>
+    <ErrorBoundary>
+      <HeroUIProvider>
+        <HashRouter>
+          <div className="flex flex-col min-h-screen">
+            <Header />
+            <div className="grow">
+              <Routes>
+                <Route index path="/" element={<Landing />} />
+                <Route path="stations" element={<Stations />} />
+                <Route path="station/:stationId" element={<Stationboard />} />
+              </Routes>
+            </div>
+            <Footer />
           </div>
-          <Footer />
-        </div>
-      </HashRouter>
-    </HeroUIProvider>
+        </HashRouter>
+      </HeroUIProvider>
+    </ErrorBoundary>
   </StrictMode>,
 )

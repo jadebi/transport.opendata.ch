@@ -1,8 +1,10 @@
-export default function StationboardRows({ data }: { data: any[] }) {
+import type { StationboardEntry } from "../../types";
+
+export default function StationboardRows({ data }: { data: StationboardEntry[] }) {
   return (
     <>
-      {(data as any).stationboard?.map((item: any) => (
-        <div className="w-full max-w-lg mx-auto rounded-xl border border-divider bg-content1 px-4 py-3 flex flex-col gap-2">
+      {data.map((item) => (
+        <div key={item.stop.id ?? `${item.category}${item.number}-${item.stop.departure}`} className="w-full max-w-lg mx-auto rounded-xl border border-divider bg-content1 px-4 py-3 flex flex-col gap-2">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <span className="font-semibold text-lg">

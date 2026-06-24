@@ -34,7 +34,7 @@ export default function Landing() {
               <p>Created by Jannick Tobler as a demonstration project.</p>
               <p>If you have any questions, feel free to contact me or follow me on social media:</p>
               <div className="flex flex-row gap-4 mt-2">
-                <a href="https://github.com/CuddlyCornet645/" target="_blank" className="flex items-center gap-1 text-foreground hover:text-primary-500 transition-colors">
+                <a href="https://github.com/jadebi/" target="_blank" className="flex items-center gap-1 text-foreground hover:text-primary-500 transition-colors">
                   <Github size={20} /> GitHub
                 </a>
                 <a href="mailto:kleinermatick@gmail.com" className="flex items-center gap-1 text-foreground hover:text-primary-500 transition-colors">
@@ -48,7 +48,7 @@ export default function Landing() {
             <CardHeader className="text-2xl font-semibold">How to use</CardHeader>
             <Divider />
             <CardBody className="flex flex-col gap-2">
-              <p>To see the Stationboard, you first have to select a staion. You can do that by opening the "Search" page and searching for the station name.</p>
+              <p>To see the Stationboard, you first have to select a station. You can do that by opening the "Search" page and searching for the station name.</p>
               <p>If you found your Station, click on open.</p>
             </CardBody>
           </Card>
@@ -58,7 +58,7 @@ export default function Landing() {
             <Divider />
             <CardBody className="flex flex-col gap-2">
               <p>I am planning to make a little playground to try out the API right here on the website.</p>
-              <p>This feature is not certain yet and only a idea!</p>
+              <p>This feature is not certain yet and only an idea!</p>
             </CardBody>
           </Card>
         </div>

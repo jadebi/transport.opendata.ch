@@ -6,12 +6,8 @@ import StationboardRows from "../components/render/StationboardRows";
 export default function Stationboard() {
   const navigate = useNavigate();
   const { stationId } = useParams<{ stationId: string }>();
-  const { items: data, loading, error, refresh } = useQueryStationboard(Number(stationId))
-
-  console.log("----------")
-  console.log(data)
-  console.log(loading)
-  console.log(error)
+  const id = Number(stationId);
+  const { items: data, loading, error, refresh } = useQueryStationboard(Number.isNaN(id) ? 0 : id)
 
   return (
     <>

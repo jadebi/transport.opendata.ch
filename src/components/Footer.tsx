@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="flex flex-row items-center justify-center mt-2">
         <span>Jannick Tobler</span>
         <Dot />
-        <span>2025</span>
+        <span>{new Date().getFullYear()}</span>
       </div>
     </footer>
   );
