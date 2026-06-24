@@ -1,13 +1,13 @@
-# transport.opendata.ch — Demo Frontend
+# transport.opendata.ch - Demo Frontend
 
 A **React SPA** that visualises real-time Swiss public transport data from the official [transport.opendata.ch API](https://transport.opendata.ch).
 
 ## Features
 
-- **Station search** — Find Swiss railway/bus stations by name
-- **Live stationboard** — Real-time departures with automatic 2-second polling
-- **Delay information** — See delays, prognosis times, and platform numbers
-- **Dark mode** — System-aware with manual toggle, persisted to localStorage
+- **Station search** - Find Swiss railway/bus stations by name
+- **Live stationboard** - Real-time departures with automatic 2-second polling
+- **Delay information** - See delays, prognosis times, and platform numbers
+- **Dark mode** - System-aware with manual toggle, persisted to localStorage
 
 ## Quick start
 
@@ -24,7 +24,7 @@ Open the URL shown in the terminal (usually `http://localhost:5173`).
 npm run build
 ```
 
-A single self-contained `index.html` is written to `dist/`. No server-side routing config is needed — the app uses hash-based routing.
+A single self-contained `index.html` is written to `dist/`. No server-side routing config is needed - the app uses hash-based routing.
 
 ### GitHub Pages
 
@@ -78,8 +78,8 @@ src/
 
 All data is fetched client-side from `https://transport.opendata.ch/v1/`:
 
-- `GET /v1/locations?query=...` — search stations
-- `GET /v1/stationboard?id=...&type=departure&limit=...` — get departures
+- `GET /v1/locations?query=...` - search stations
+- `GET /v1/stationboard?id=...&type=departure&limit=...` - get departures
 
 See the [official API documentation](https://transport.opendata.ch) for details.
 
